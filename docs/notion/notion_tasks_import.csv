@@ -1,0 +1,30 @@
+Name,Status,Area,Priority,Assignee,Due,Tags,Description,FilePath,SubtaskOf
+"Initialize monorepo","Done","Repository","High",, ,"git,repo","Initialize git in repository root and ensure monorepo layout","/", 
+"Add root .gitignore","Done","Repository","High",, ,"git,ignore","Add .gitignore covering Java, Node, pnpm, IDE files","/.gitignore",Initialize monorepo
+"Add svc-customer .gitignore","Done","svc-customer","High",, ,"git,ignore","Add .gitignore to service to ignore target/, logs/, classes","/services/svc-customer/.gitignore",Initialize monorepo
+"Import svc-customer history","Done","Repository","High",, ,"git,history","Import nested svc-customer repo into monorepo and preserve history","/services/svc-customer",Initialize monorepo
+"Clean generated artifacts","Done","Repository","High",, ,"cleanup","Remove .next, target, logs and other generated files from VCS","/",Initialize monorepo
+"Create root README updates","Done","Docs","Medium",, ,"doc","Add Git/GitHub instructions and basic run notes to README","/README.md",Initialize monorepo
+"Create PROJECTS_PLAN for svc-customer","Done","svc-customer","Low",, ,"doc,plan","Add project plan and roadmap for customer service","/services/svc-customer/PROJECTS_PLAN.md",Initialize monorepo
+"Add DbVersionProbe","Done","svc-customer","Medium",, ,"diagnostic","Small Java utility to print JDBC DatabaseMetaData (product/version/driver)","/services/svc-customer/src/main/java/com/arami/customer/DbVersionProbe.java",Initialize monorepo
+"Document DbVersionProbe usage","To Do","svc-customer","Medium",, ,"doc,diagnostic","Add instructions in README.dev.md showing how to run DbVersionProbe (mvn exec or java -cp)","/services/svc-customer/README.dev.md",Add DbVersionProbe
+"Fix Flyway for Postgres 16","Done","svc-customer","High",, ,"infra,db","Add flyway-database-postgresql and pin flyway-core so Flyway accepts Postgres 16; baseline existing schema","/services/svc-customer/pom.xml",Add DbVersionProbe
+"Add application-dev profile","Done","svc-customer","Medium",, ,"dev,config","Create application-dev.yml to disable Flyway and use hibernate ddl-auto:update for local dev","/services/svc-customer/src/main/resources/application-dev.yml",Fix Flyway for Postgres 16
+"Finalize README.dev.md","To Do","svc-customer","Medium",, ,"doc","Polish README.dev.md with steps to run locally, env vars and troubleshooting","/services/svc-customer/README.dev.md",Document DbVersionProbe usage
+"Create GitHub repo and push","Done","Repository","High",, ,"git,remote","Create remote repo on GitHub (Arami) and push monorepo master branch","https://github.com/Coderquintana/Arami.git",Initialize monorepo
+"Add CI skeleton (GitHub Actions)","To Do","CI","High",, ,"ci,github","Add basic workflow to build Java service and optionally run frontend checks","/.github/workflows/ci.yml",Create GitHub repo and push
+"Add unit tests for svc-customer","To Do","svc-customer","High",, ,"test,java","Add JUnit unit tests for service layer and controller","/services/svc-customer/src/test/java",Add CI skeleton
+"Add integration tests for DB migrations","To Do","svc-customer","High",, ,"test,db","Add integration tests that run Flyway against an ephemeral Postgres (Testcontainers) or local DB","/services/svc-customer/src/test/integration",Add CI skeleton
+"Add docker-compose examples","To Do","infra","Medium",, ,"docker,infra","Provide docker-compose templates for local infra (Postgres, Keycloak, MinIO, pgAdmin)","/infra/docker-compose.yml",Initialize monorepo
+"Add dev scripts","To Do","Repository","Medium",, ,"scripts","Add scripts for starting infra, building services and frontend (makefile or package.json scripts)","/",Create GitHub repo and push
+"Add Keycloak/MinIO notes","To Do","infra","Low",, ,"docs,infra","Document how to configure Keycloak and MinIO locally and any env mappings","/infra/README.md",Add docker-compose examples
+"Scaffold apps/arami-web README","In Progress","apps/arami-web","Medium",, ,"doc,frontend","Add a README explaining how to run the Next.js app (pnpm dev, envs) and link to packages/shared","/apps/arami-web/README.md",Create GitHub repo and push
+"Add packages/shared build step","To Do","packages/shared","Low",, ,"build,ts","Ensure @aramistack/shared has build scripts and is included in workspace","/packages/shared/package.json",Scaffold apps/arami-web README
+"Add CONTRIBUTING.md and CODEOWNERS","To Do","Repository","Low",, ,"doc,repo","Add contributing guidelines and CODEOWNERS for main areas","/CONTRIBUTING.md,/CODEOWNERS",Create GitHub repo and push
+"Add LICENSE","To Do","Repository","Low",, ,"legal","Add a license (e.g., MIT) to the repo","/LICENSE",Create GitHub repo and push
+"Add CHANGELOG template","To Do","Repository","Low",, ,"release","Add CHANGELOG.md template and release process notes","/CHANGELOG.md",Create GitHub repo and push
+"Add security: env and secrets guidance","To Do","Repository","High",, ,"security","Document how to store secrets, .env.example and avoid committing credentials","/.env.example,/infra/.env.example",Create GitHub repo and push
+"Add DB dev setup script","To Do","infra","Medium",, ,"db,script","Add SQL script or psql commands to create role/database for local dev (arami/aramidb)","/infra/db-init.sql",Add docker-compose examples
+"Review Flyway migrations","To Do","svc-customer","High",, ,"db,flyway","Inspect existing migrations, add new ones for schema changes and keep baseline policy","/services/svc-customer/src/main/resources/db/migration",Fix Flyway for Postgres 16
+"Consider history cleanup","To Do","Repository","Low",, ,"git,cleanup","Optionally remove large binaries from history (git filter-repo) to reduce remote size","/ (requires tooling)",Clean generated artifacts
+"Document project in Notion","To Do","Docs","Medium",, ,"notion,docs","Import this task CSV into Notion and create pages for architecture, runbooks and onboarding","/notion_tasks_import.csv",Create GitHub repo and push
