@@ -14,6 +14,19 @@
 # pnpm
 /pnpm-lock.yaml
 
+# Next.js build output
+.next/
+apps/*/.next/
+
+# Turbo / caches
+.turbo/
+.cache/
+
+# build outputs
+/dist/
+/build/
+
+
 # IDE
 .vscode/
 .idea/
