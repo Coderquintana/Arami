@@ -1,0 +1,35 @@
+# Java
+/target/
+*.class
+
+# Maven
+/.mvn/
+**/target/
+
+# Node
+/node_modules/
+/packages/**/node_modules/
+/apps/**/node_modules/
+
+# pnpm
+/pnpm-lock.yaml
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# env
+*.env
+*.local
+
+# IntelliJ
+out/
+
