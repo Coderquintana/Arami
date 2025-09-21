@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mockup base styles */
+:root { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { @apply text-gray-900 bg-gray-50 transition-colors; }
+html.dark body { @apply bg-gray-950 text-gray-100; }
