@@ -1,17 +1,17 @@
-# AramiStack Monorepo
+﻿# AramiStack Monorepo
 
 **Apps**
-- `apps/arami-web` (Next.js + Tailwind)
-- (futuro) `apps/bachvet-web`
+- pps/mockup-web (Next.js + Tailwind) — Mock de UI para validar con cliente
+- pps/shop-web (Next.js + Tailwind) — Frontend real listo para integrar APIs
 
 **Services**
-- `services/svc-customer` (Spring Boot 3 + PostgreSQL + Flyway + springdoc-openapi)
+- services/svc-customer (Spring Boot 3 + PostgreSQL + Flyway + springdoc-openapi)
 
 **Infra**
-- `infra/docker-compose.yml` (Postgres, Keycloak, MinIO)
+- infra/docker-compose.yml (Postgres, Keycloak, MinIO)
 
 ## Quick start
-```bash
+`ash
 # 1) Node + pnpm
 corepack enable && corepack prepare pnpm@9.0.0 --activate
 pnpm i
@@ -22,7 +22,13 @@ cp .env.example .env
 docker compose up -d
 
 # 3) Frontend
-cd ../apps/arami-web
+# Mockup (puerto 3100)
+cd ../apps/mockup-web
+pnpm i
+pnpm dev
+
+# Front real (puerto 3001)
+cd ../apps/shop-web
 pnpm i
 pnpm dev
 
@@ -30,53 +36,20 @@ pnpm dev
 cd ../../services/svc-customer
 ./mvnw spring-boot:run
 # Swagger UI: http://localhost:8080/swagger-ui/index.html
-```
+`
 
-## Notes
-- Keycloak es **gratis** y open source (Apache 2.0). Puedes usarlo sin costo.
-- Variables y código en **inglés**. Documentación en español.
+## Documentación
+- docs/frontend-structure.md — Estructura y convenciones del frontend.
 
-## Git & GitHub quick push (commands)
+## Notas
+- Keycloak es open source (Apache 2.0) y puedes usarlo sin costo.
+- Variables y código en inglés. Documentación en español.
 
-1) Create repo on GitHub (example using gh CLI):
+## Política de ramas sugerida
+- main: protegido, siempre verde, merge vía PR
+- develop: rama de integración (opcional)
+- eature/*, ix/*, elease/*, hotfix/*
 
-```bash
-# Replace <YOUR-ORG> and <REPO> with your values
-gh repo create <YOUR-ORG>/<REPO> --public --confirm
-```
-
-2) From repository root, push all files:
-
-```bash
-git init
-git add .
-git commit -m "chore: initial monorepo import"
-git branch -M main
-git remote add origin git@github.com:<YOUR-ORG>/<REPO>.git
-git push -u origin main
-```
-
-If you prefer HTTPS:
-
-```bash
-git remote add origin https://github.com/<YOUR-ORG>/<REPO>.git
-git push -u origin main
-```
-
-## Suggested branch policy
-
-- `main`: protected, always green, merged only via PR
-- `develop`: integration branch (optional)
-- `feature/*`: feature branches
-- `fix/*`: bugfix branches
-- `release/*` and `hotfix/*` as needed
-
-PR workflow & commit style
-- Open a PR from `feature/*` into `develop` (or `main` if you skip `develop`)
-- Require at least one review and passing CI
-- Use Conventional Commits (e.g. `feat(cart): add checkout flow`)
-
-## Useful GitHub settings
-- Enable Actions and Dependabot
-- Protect `main` with required status checks and reviews
-- Add `CODEOWNERS` for critical areas
+PR workflow & commits
+- PRs con al menos una revisión y CI verde
+- Conventional Commits (e.g. eat(cart): add checkout flow)

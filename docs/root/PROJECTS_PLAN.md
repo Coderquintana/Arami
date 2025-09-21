@@ -85,3 +85,4 @@ Resumen (en español, code/variables en inglés):
 ---
 
 Si quieres, ahora creo el primer commit y preparo instrucciones para subir a GitHub. Dime si quieres que lo haga ahora y qué nombre de repositorio prefieres (o si quieres que cree 2 repos: `store` y `vet`, o uno monorepo `aramistack`).
+

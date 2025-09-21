@@ -1,21 +1,35 @@
 # Architecture overview (Arami)
 
-This document provides a high-level overview of the Arami monorepo architecture.
+Visión general del monorepo y los módulos actuales/planeados.
 
-- Monorepo structure
-  - apps/: Frontend applications (Next.js)
-  - services/: Backend services (Spring Boot)
-  - packages/: Shared packages (TypeScript shared dtos)
-  - infra/: Local infra (docker-compose, .env examples)
-  - docs/: Documentation and runbooks
+Monorepo
+- `apps/`
+  - `mockup-web` (Next.js 14 + Tailwind): demo UI con carrito, detalle, dark/light, tooltips, perfil y admin demo.
+  - `shop-web` (Next.js 14 + Tailwind): esqueleto del front real para integrar auth y APIs.
+- `services/`
+  - `svc-customer`: Spring Boot 3 (JPA/Flyway) — clientes (base actual).
+  - Planeados: `svc-catalog` (productos/categorías/variantes), `svc-order` (órdenes/checkout).
+- `packages/`: código compartido (ej. tipos TypeScript) — placeholder actual.
+- `infra/`: docker-compose (Keycloak, MinIO, pgAdmin) y `.env.example`.
+- `docs/`: documentación central (esta carpeta).
 
-- Service: svc-customer
-  - Spring Boot 3 service, Flyway migrations in `src/main/resources/db/migration`
-  - Local dev profile: `application-dev.yml` (disables Flyway, uses Hibernate `ddl-auto: update`)
-  - Diagnostic probe: `DbVersionProbe.java` to check JDBC metadata
+Frontend
+- Stack: Next.js 14 (App Router), TypeScript, Tailwind.
+- Diseño: tokens en `tailwind.config.ts`, modo `darkMode: 'class'` y `highlight` color.
+- Componentes propios: Sheet (drawer), Tooltip, ThemeToggle, ProfilePanel, AdminPanel, Footer.
+- Estado del mockup: persistencia de carrito (localStorage) y rutas `/store` y `/store/[id]`.
 
-- Dev tooling
-  - pnpm workspace for JS packages
-  - Maven for Java services
-  - Recommend Testcontainers for integration tests that require Postgres
+Auth (a integrar en `shop-web`)
+- Keycloak como IdP (OIDC + PKCE), next-auth como integración recomendada.
+- Roles de negocio: `owner`, `staff`, `customer`.
+- Login social via Google (broker en Keycloak).
+
+Backend
+- Spring Boot 3, Postgres, Flyway, Springdoc OpenAPI.
+- Módulos futuros: catálogo (MinIO para media), órdenes (pagos Stripe/Mercado Pago).
+
+Dev Tooling
+- pnpm workspaces (node_modules hoisteado en la raíz por diseño).
+- Maven para Java.
+- Testcontainers recomendado para integración de DB.
 

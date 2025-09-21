@@ -16,3 +16,4 @@ mvn -Dspring-boot.run.profiles=dev spring-boot:run
 Notes:
 - This is intended for local development only. Do NOT use `dev` profile in production.
 - Keep Flyway and migrations for CI/production deployments to preserve schema history and safety.
+
